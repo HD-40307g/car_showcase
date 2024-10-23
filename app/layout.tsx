@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Navbar, Footer} from "@/components";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,11 +20,7 @@ export const metadata: Metadata = {
   description: "Discover the best cars in the world.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode;}>) {
   return (
     <html lang="en">
       <body className="relative">

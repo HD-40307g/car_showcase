@@ -37,7 +37,7 @@
 }
 /* END: General styles */
 
-/* START: Hero styles */
+/* START: Title styles */
 .hero {
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
 }
@@ -61,7 +61,7 @@
 .hero__image-overlay {
   @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
 }
-/* END: Hero styles */
+/* END: Title styles */
 
 /* START: Home styles */
 

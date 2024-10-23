@@ -1,10 +1,11 @@
 "use client"
+
 import React from 'react'
 import SearchManufacturer from "./SearchManufacturer"
 import { useState } from 'react'
 import { manufacturers } from '@/constants';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const SearchButton = ({ otherClasses }: {otherClasses: string}) => (
     <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
@@ -53,7 +54,7 @@ const SearchBar = () => {
                 <SearchButton otherClasses='sm:hidden' />
             </div>
             <div className='searchbar__item'>
-                <Image src='model-icon.png' width={25} height={25} className='object-contain' alt='car model' />
+                <Image src='/public/model-icon.png' width={25} height={25} className='object-contain' alt='car model' />
                 <input type='text' name='model' value={model} onChange={(e) => setModel(e.target.value)} placeholder='Arteon' className='searchbar__input'/>
                 <SearchButton otherClasses='sm:hidden' />
             </div>

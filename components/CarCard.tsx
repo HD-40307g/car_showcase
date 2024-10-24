@@ -1,6 +1,5 @@
 "use client";
 
-import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
 import { CarProps } from '@/types';
@@ -15,34 +14,36 @@ interface CarCardProps {
 const CarCard = ({ car }: CarCardProps) => {
     const { city_mpg, year, make, model, transmission, drive } = car;
     const [isOpen, setIsOpen] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
     const carRent = calculateCarRent(city_mpg, year);
 
     return (
     <div className='car-card group'>
         <div className='car-card__content'>
             <h2 className='car-card__content-title'>{make} {model}</h2>
+            <Image src={!isLiked ? '/heart-outline.svg' : '/heart-filled.svg'} width={24} height={24} alt='heart' className='object-contain cursor-pointer mt-0.5' onClick={() => setIsLiked(!isLiked)} />
         </div>
-        <p className='flex mt-6 text-[32px] font-extrabold'>
-            <span className='self-start text-[14px] font-semibold'>$</span>
+        <p className='car-card__price'>
+            <span className='car-card__price-dollar'>$</span>
             {carRent}
-            <span className='self-end text-[14px] font-medium'>/day</span>
+            <span className='car-card__price-day'>/day</span>
         </p>
-        <div className='relative w-full h-40 my-3 object-contain'>
+        <div className='car-card__image'>
             <Image src={generateCarImageUrl(car)} alt='car model' fill priority className='object-contain'/>
         </div>
         <div className='relative flex w-full mt-2'>
-            <div className='flex group-hover:invisible w_full justify-between text-gray'>
-                <div className='flex flex-col justify-center items-center gap-2'>
+            <div className='car-card__icon-container'>
+                <div className='car-card__icon'>
                     <img src="/steering-wheel.svg" width={20} height={20} alt="steering wheel" />
-                    <p className='text-[14px]'>{transmission === 'a' ? 'Automatic' : "Manual"}</p>
+                    <p className='car-card__icon-text'>{transmission === 'a' ? 'Automatic' : "Manual"}</p>
                 </div>
-                <div className='flex flex-col justify-center items-center gap-2'>
+                <div className='car-card__icon'>
                     <img src="/tire.svg" width={20} height={20} alt="tire" />
-                    <p className='text-[14px]'>{drive.toUpperCase()}</p>
+                    <p className='car-card__icon-text'>{drive.toUpperCase()}</p>
                 </div>
-                <div className='flex flex-col justify-center items-center gap-2'>
+                <div className='car-card__icon'>
                     <img src="/gas.svg" width={20} height={20} alt="gas" />
-                    <p className='text-[14px]'>{city_mpg} MPG</p>
+                    <p className='car-card__icon-text'>{city_mpg} MPG</p>
                 </div>
             </div>
             <div className='car-card__btn-container'>

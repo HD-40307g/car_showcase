@@ -1,21 +1,19 @@
 "use client";
 
-import React from 'react';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
 import { Listbox, ListboxButton, ListboxOption, Transition } from '@headlessui/react';
 import { CustomFilterProps } from '@/types';
-import { updateSearchParams } from '@/utils';
 
-const CustomFilter = ({title, options, setFilter }: CustomFilterProps) => {
+function CustomFilter<T>({ options, setFilter }: CustomFilterProps<T>) {
   const [selected, setSelected] = useState(options[0]);
 
   return (
     <div className='w-fit'>
-      <Listbox value={selected} onChange={(e) => {setSelected(e); setFilter(e.value)}}>
+      <Listbox value={selected} onChange={(e) => {setSelected(e); setFilter(e.value as unknown as T)}}>
         <div className='relative w-fit z-10'>
           <ListboxButton className='custom-filter__btn'>
-            <span>{selected.title}</span>
+            <span className='block truncate'>{selected.title}</span>
             <Image src="/chevron-up-down.svg" width={20} height={20} className='ml-4 object-contain' alt="chevron up down" />
           </ListboxButton>
           <Transition as={Fragment} leave='transition ease-in duration-100' leaveFrom='opacity-100' leaveTo='opacity-0'>
@@ -35,4 +33,4 @@ const CustomFilter = ({title, options, setFilter }: CustomFilterProps) => {
   )
 }
 
-export default CustomFilter
+export default CustomFilter;

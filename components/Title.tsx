@@ -29,7 +29,7 @@ const Title = () => {
                 <div className='hero__image-overlay'/>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Title;

@@ -1,6 +1,5 @@
 "use client";
 
-import React from 'react';
 import { ShowMoreProps } from '@/types';
 import CustomButton from './CustomButton';
 
@@ -15,7 +14,7 @@ const ShowMore = ({ pageNumber, isNext, setLimit }: ShowMoreProps) => {
                 <CustomButton title='Show More' btnType='button' containerStyles='bg-primary-blue rounded-full text-white' handleClick={handleNavigation}></CustomButton>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default ShowMore;

@@ -1,16 +1,23 @@
 "use client";
 
-import React, { Fragment } from 'react'
+import  { Fragment } from 'react'
 import { CarProps } from '@/types';
 import Image from 'next/image';
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
-import { generateCarImageUrl } from '@/utils';
 
 interface CarDetailsProps {
     isOpen: boolean;
     closeModal: () => void;
     car: CarProps;
-}
+};
+
+const imaginApiKey = process.env.NEXT_PUBLIC_IMAGIN_API_KEY;
+const CarDetailsImage = ({ car, angle }: { car: CarProps; angle: string }) => (
+    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+        <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${car.make}&modelFamily=${car.model.split(" ")[0]}&zoomType=fullscreenzoomLevel=30&modelYear=${car.year}&angle=${angle}`} alt="car model" fill priority className="object-contain" />
+    </div>
+);
+
 
 const CarDetails = ({isOpen, closeModal, car}: CarDetailsProps) => {
     return (
@@ -29,18 +36,12 @@ const CarDetails = ({isOpen, closeModal, car}: CarDetailsProps) => {
                                     </button>
                                     <div className='flex-1 flex flex-col gap-3'>
                                         <div className='car-details__main-image'>
-                                            <Image src={generateCarImageUrl(car, 'angle')} alt='car model' fill priority className='object-contain' />
+                                            <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${car.make}&modelFamily=${car.model.split(" ")[0]}&zoomType=fullscreen&modelYear=${car.year}`} alt='car model' fill priority className='object-contain' />
                                         </div>
                                         <div className='flex gap-3'>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '29')} alt='car model' fill priority className='object-contain' />
-                                            </div>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '33')} alt='car model' fill priority className='object-contain' />
-                                            </div>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '13')} alt='car model' fill priority className='object-contain' />
-                                            </div>
+                                            <CarDetailsImage car={car} angle="29" />
+                                            <CarDetailsImage car={car} angle="33" />
+                                            <CarDetailsImage car={car} angle="13" />
                                         </div>
                                     </div>
                                     <div className='flex-1 flex flex-col gap-2'>

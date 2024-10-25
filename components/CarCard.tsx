@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { CarProps } from '@/types';
 import CustomButton from './CustomButton';
-import { calculateCarRent, generateCarImageUrl } from '@/utils';
+import { calculateCarRent } from '@/utils';
 import CarDetails from './CarDetails';
 
 interface CarCardProps {
@@ -16,6 +16,7 @@ const CarCard = ({ car }: CarCardProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
     const carRent = calculateCarRent(city_mpg, year);
+    const imaginApiKey = process.env.NEXT_PUBLIC_IMAGIN_API_KEY
 
     return (
     <div className='car-card group'>
@@ -29,7 +30,7 @@ const CarCard = ({ car }: CarCardProps) => {
             <span className='car-card__price-day'>/day</span>
         </p>
         <div className='car-card__image'>
-            <Image src={generateCarImageUrl(car)} alt='car model' fill priority className='object-contain'/>
+            <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${make}&modelFamily=${model.split(" ")[0]}&zoomType=fullscreen&modelYear=${year}`} alt='car model' fill priority className='object-contain'/>
         </div>
         <div className='relative flex w-full mt-2'>
             <div className='car-card__icon-container'>

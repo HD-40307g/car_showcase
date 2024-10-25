@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, Fragment } from 'react';
 import { Combobox, ComboboxButton, Transition, ComboboxInput, ComboboxOptions, ComboboxOption } from '@headlessui/react';
 import { SearchManufacturerProps } from '@/types';

@@ -2,8 +2,12 @@ import { FilterProps } from "@/types";
 
 export async function fetchCars(filters: FilterProps) {
     const { manufacturer, year, model, limit, fuel } = filters;
+    const apiKey = process.env.NEXT_PUBLIC_RAPID_API_KEY;
+    if (!apiKey) {
+        throw new Error("Missing RapidAPI key in environment variables.")
+    }
     const headers: HeadersInit = {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
+        "X-RapidAPI-Key": apiKey || "",
         "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
     };
 

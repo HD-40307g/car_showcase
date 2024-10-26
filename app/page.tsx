@@ -5,6 +5,7 @@ import { yearsOfProduction, fuels } from "@/constants";
 import { fetchCars } from "@/utils";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { CarState } from "@/types";
 
 export default function Home() {
   const [allCars, setAllCars] = useState<CarState>([]);
@@ -16,7 +17,7 @@ export default function Home() {
 
   // filter states
   const [fuel, setFuel] = useState("");
-  const [year, setYear] = useState(202);
+  const [year, setYear] = useState(2022);
 
   // limit state
   const [limit, setLimit] = useState(10);

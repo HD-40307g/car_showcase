@@ -16,7 +16,7 @@ const CarCard = ({ car }: CarCardProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
     const carRent = calculateCarRent(city_mpg, year);
-    const imaginApiKey = process.env.NEXT_PUBLIC_IMAGIN_API_KEY
+    const imaginApiKey = process.env.NEXT_PUBLIC_IMAGIN_API_KEY;
 
     return (
     <div className='car-card group'>

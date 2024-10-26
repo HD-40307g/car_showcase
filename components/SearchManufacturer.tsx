@@ -15,6 +15,7 @@ const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) 
 
     return (
     <div className='search-manufacturer'>
+        <label htmlFor="manufacturer" className="sr-only">Select Manufacturer </label>
         <Combobox value={selected} onChange={setSelected}>
             <div className='relative w-full'>
                 <ComboboxButton className='absolute top-15px'>
@@ -27,7 +28,7 @@ const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) 
                         <ComboboxOption key={item} className={({active}) => `relative search-manufacturer__option ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`} value={item}>
                             {({ selected, active }) => (
                                 <>
-                                <span className={`block truncate ${selected ? 'fond-medium' : 'font-normal'}`}>
+                                <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
                                     {item}
                                 </span>
                                 {selected ? (

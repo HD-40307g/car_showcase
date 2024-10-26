@@ -30,28 +30,32 @@ const CarCard = ({ car }: CarCardProps) => {
             <span className='car-card__price-day'>/day</span>
         </p>
         <div className='car-card__image'>
-            <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${make}&modelFamily=${model.split(" ")[0]}&zoomType=fullscreen&modelYear=${year}`} alt='car model' fill priority className='object-contain'/>
+            {imaginApiKey ? (
+                <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${make}&modelFamily=${model.split(" ")[0]}&zoomType=fullscreen&modelYear=${year}`} alt={`${make} ${model}`} fill priority className="object-contain" /> 
+                ) : (
+                <p>Image not available</p>
+                )}
         </div>
         <div className='relative flex w-full mt-2'>
             <div className='car-card__icon-container'>
                 <div className='car-card__icon'>
-                    <img src="/steering-wheel.svg" width={20} height={20} alt="steering wheel" />
+                    <Image src="/steering-wheel.svg" width={20} height={20} alt="steering wheel" />
                     <p className='car-card__icon-text'>{transmission === 'a' ? 'Automatic' : "Manual"}</p>
                 </div>
                 <div className='car-card__icon'>
-                    <img src="/tire.svg" width={20} height={20} alt="tire" />
+                    <Image src="/tire.svg" width={20} height={20} alt="tire" />
                     <p className='car-card__icon-text'>{drive.toUpperCase()}</p>
                 </div>
                 <div className='car-card__icon'>
-                    <img src="/gas.svg" width={20} height={20} alt="gas" />
+                    <Image src="/gas.svg" width={20} height={20} alt="gas" />
                     <p className='car-card__icon-text'>{city_mpg} MPG</p>
                 </div>
             </div>
             <div className='car-card__btn-container'>
-                <CustomButton title='View More' containerStyles='w-full py-[16px] rounded-full bg-primary-blue' textStyles='text-white text-[14px] leading-[17px] font-bold' rightIcon='/right-arrow.swg' handleClick={() => setIsOpen(true)} />
+                <CustomButton title='View More' containerStyles='w-full py-[16px] rounded-full bg-primary-blue' textStyles='text-white text-[14px] leading-[17px] font-bold' rightIcon='/right-arrow.svg' handleClick={() => setIsOpen(true)} />
             </div>
         </div>
-        <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+        {isOpen && <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />}
     </div>
     )
 }

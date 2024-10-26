@@ -7,8 +7,8 @@ const Footer = () => {
         <footer className='footer'>
             <div className='footer__links-container'>
                 <div className='footer__rights'>
-                    <Image src='/logo.svg' alt='logo' width={118} height={18} className='object-contain' />
-                    <p className='text-base text-gray-700'>CarHub  2024 <br/>All rights reserved &copy</p>
+                    <Image src='/logo.svg' alt='CarHub logo' width={118} height={18} className='object-contain' />
+                    <p className='text-base text-gray-700'>&copy; {new Date().getFullYear()} CarHub. All rights reserved.</p>
                 </div>
                 <div className='footer__links'>
                     {footerLinks.map((link) => (
@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='footer__copyrights'>
-                <p>@2024 CarHub. All Rights Reserved</p>
+                <p>&copy; {new Date().getFullYear()} CarHub. All Rights Reserved</p>
                 <div className='footer__copyright-links'>
                     <Link href='/' className='text-gray-500'>Privacy Policy</Link>
                     <Link href='/' className='text-gray-500'>Terms of Use</Link>

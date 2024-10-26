@@ -14,7 +14,11 @@ interface CarDetailsProps {
 const imaginApiKey = process.env.NEXT_PUBLIC_IMAGIN_API_KEY;
 const CarDetailsImage = ({ car, angle }: { car: CarProps; angle: string }) => (
     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-        <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${car.make}&modelFamily=${car.model.split(" ")[0]}&zoomType=fullscreenzoomLevel=30&modelYear=${car.year}&angle=${angle}`} alt="car model" fill priority className="object-contain" />
+        {imaginApiKey ? (
+            <Image src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${car.make}&modelFamily=${car.model.split(" ")[0]}&zoomType=fullscreen&zoomLevel=30&modelYear=${car.year}&angle=${angle}`} alt="car model angle" fill priority className="object-contain" />
+            ) : (
+            <p>Image not available</p>
+        )}
     </div>
 );
 
